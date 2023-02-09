@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 public class CardDTOEnd {
   private Long cardId;
   private String pan;
+  private String maskedPan;
   private String cardType;
   private Long validationNumber;
   private String state;

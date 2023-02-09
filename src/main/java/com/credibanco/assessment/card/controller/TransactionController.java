@@ -2,6 +2,8 @@ package com.credibanco.assessment.card.controller;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +38,10 @@ public class TransactionController {
   @Autowired
   @Qualifier("transactionDTOToEntity")
   private Translator<TransactionDTO, Transaction> transactionDTOToEntity;
+
+  @Autowired
+  @Qualifier("transactionEntityToDTO")
+  private Translator<Transaction, TransactionDTO> transactionEntityToDTO;
 
   public TransactionResponseDTO createTransaction(final TransactionDTO transactionDTO)
       throws ProcessException {
@@ -110,6 +116,22 @@ public class TransactionController {
           .message("Compra anulada")
           .referenceNumber(transaction.getReferenceNumber())
           .build();
+    } catch (final ProcessException e) {
+      log.error(e.getMessage());
+      throw e;
+    }
+  }
+
+  public List<TransactionDTO> getAllTransaction() throws ProcessException {
+    final List<TransactionDTO> transactionDTOs = new ArrayList<>();
+    try {
+      final List<Transaction> transactions = transactionService.findAllTransaction();
+
+      for (final Transaction transaction : transactions) {
+        transactionDTOs.add(transactionEntityToDTO.translate(transaction));
+      }
+
+      return transactionDTOs;
     } catch (final ProcessException e) {
       log.error(e.getMessage());
       throw e;

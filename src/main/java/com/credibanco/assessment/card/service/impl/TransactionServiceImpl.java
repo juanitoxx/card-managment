@@ -1,5 +1,7 @@
 package com.credibanco.assessment.card.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
@@ -48,6 +50,16 @@ public class TransactionServiceImpl implements TransactionService {
   public Transaction findByReferenceNumber(final String referenceNumber) throws ProcessException {
     try {
       return repository.findByReferenceNumber(referenceNumber);
+    } catch (final DataAccessException e) {
+      log.error(e);
+      throw e;
+    }
+  }
+
+  @Override
+  public List<Transaction> findAllTransaction() throws ProcessException {
+    try {
+      return (List<Transaction>) repository.findAll();
     } catch (final DataAccessException e) {
       log.error(e);
       throw e;

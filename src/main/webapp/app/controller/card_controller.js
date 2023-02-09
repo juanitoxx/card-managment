@@ -1,11 +1,11 @@
 'use strict';
 
-app.controller('CardController', ['$scope', 'CardService', function($scope, CardService) {
+App.controller('CardController', ['$scope', 'CardService', function($scope, CardService) {
 	var self = this;
 	self.cards = [];
 
 	self.fetchAllCards = function() {
-		CardService.fetchAllCards()
+		CardService.fetchAllUsers()
 			.then(
 				function(d) {
 					self.cards = d;

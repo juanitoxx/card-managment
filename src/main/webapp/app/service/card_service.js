@@ -1,6 +1,6 @@
 'use strict';
 
-app.factory('CardService', ['$http', '$q', function($http, $q) {
+App.factory('CardService', ['$http', '$q', function($http, $q) {
 
 	return {
 

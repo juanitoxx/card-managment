@@ -1,11 +1,10 @@
 'use strict';
 
-app.factory('CardService', ['$http', '$q', function($http, $q) {
+app.factory('TransactionService', ['$http', '$q', function($http, $q) {
 
 	return {
-
-		fetchAllCards: function() {
-			return $http.get('http://localhost:8090/card-api/api/v1/card/allCards/')
+		fetchAllTransactions: function() {
+			return $http.get('http://localhost:8090/card-api/api/v1/transaction/allTransactions')
 				.then(
 					function(response) {
 						return response.data;

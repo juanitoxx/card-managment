@@ -8,6 +8,7 @@ import com.credibanco.assessment.card.enums.CardTypeEnum;
 import com.credibanco.assessment.card.exceptions.ProcessException;
 import com.credibanco.assessment.card.model.Card;
 import com.credibanco.assessment.card.pattern.Translator;
+import com.credibanco.assessment.card.util.MaskedPANUtil;
 
 @Component
 public class CardEntityToCardDTOEnd implements Translator<Card, CardDTOEnd> {
@@ -18,6 +19,7 @@ public class CardEntityToCardDTOEnd implements Translator<Card, CardDTOEnd> {
         .cardId(input.getCardId())
         .cardType(CardTypeEnum.getCardCode(input.getCardType()).getCardType())
         .pan(input.getPan())
+        .maskedPan(MaskedPANUtil.getMaskedPAN(input.getPan(), '*'))
         .validationNumber(input.getValidationNumber())
         .state(input.getState())
         .personDTO(
