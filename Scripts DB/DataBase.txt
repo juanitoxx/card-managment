@@ -1,3 +1,5 @@
+CREATE SCHEMA `credibanco` ;
+
 CREATE TABLE `card` (
   `card_id` int NOT NULL AUTO_INCREMENT,
   `PAN` varchar(19) DEFAULT NULL,
