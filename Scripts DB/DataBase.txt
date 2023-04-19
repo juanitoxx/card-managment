@@ -1,3 +1,4 @@
+https://github.com/juanitoxx/card-managment.git
 CREATE SCHEMA `credibanco` ;
 
 CREATE TABLE `card` (
